@@ -8,7 +8,7 @@ const AddInput = ({ setWeather }: any) => {
 
   const getWeather = async (c: string) => {
     try {
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${c}&appid=${process.env.REACT_APP_API_KEY}`);
+      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${c}&appid=${process.env.REACT_APP_API_KEY}&units=metric`);
       const res = await response.json();
       if (!response.ok) {
         throw new Error(res.message);
