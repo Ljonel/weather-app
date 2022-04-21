@@ -93,17 +93,3 @@
   font-size: 20px;
   padding-right: 10px;
 }
-/* 
-.menu {
-  width: 0px;
-  height: 400px;
-  position: absolute;
-  left: 250px;
-  background: rgba(0, 0, 0, 0.6);
-  transition: width 0.5s;
-  transition-delay: 0.5s;
-  overflow: hidden;
-}
-.menu-active {
-  width: 200px;
-} */

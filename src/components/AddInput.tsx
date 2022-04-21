@@ -1,26 +1,12 @@
 import React, { SyntheticEvent, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import "../styles/AddInput.css";
-
-const AddInput = ({ setWeather }: any) => {
-  const [isInputActive, setIsInputActive] = useState(false);
+import getWeather from "../hooks/getWeather";
+const AddInput = () => {
+  const [isInputActive, setIsInputActive] = useState<boolean>(false);
   const [city, setCity] = useState<string>("");
 
-  const getWeather = async (c: string) => {
-    try {
-      const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${c}&appid=${process.env.REACT_APP_API_KEY}&units=metric`);
-      const res = await response.json();
-      if (!response.ok) {
-        throw new Error(res.message);
-      }
-      setWeather(res);
-      return res;
-    } catch (e) {
-      console.log(e);
-    }
-  };
-
-  const handleAddWeather = (e: SyntheticEvent) => {
+  const HandleAddWeather = (e: SyntheticEvent) => {
     e.preventDefault();
     if (city) {
       getWeather(city);
@@ -35,7 +21,7 @@ const AddInput = ({ setWeather }: any) => {
         <div className="input-search">
           <form>
             <input required type="text" value={city} placeholder="City" onChange={(e) => setCity(e.target.value)} />
-            <button type="submit" onClick={handleAddWeather}>
+            <button type="submit" onClick={HandleAddWeather}>
               Add
             </button>
           </form>
