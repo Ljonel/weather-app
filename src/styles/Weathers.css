@@ -71,6 +71,9 @@
   justify-content: center;
 }
 
+.card.active + .chat-bubble {
+  display: none;
+}
 .chat-bubble::after {
   content: "";
   position: absolute;
