@@ -6,7 +6,6 @@ import { BsSpeedometer } from "react-icons/bs";
 function Weathers({ weather }: any) {
   const date = useGetTodayDate();
   const [isActive, setIsActive] = useState(false);
-  // const [weather, setWeather] = useState<any>([]);
   const handleMenu = () => {
     setIsActive((prev) => !prev);
   };
@@ -26,7 +25,7 @@ function Weathers({ weather }: any) {
                   <img src={`http://openweathermap.org/img/wn/${weather.img}@2x.png`} alt="" />
                   <div className="card-weahter-temp">
                     <h1>{Math.floor(weather.celcius)}&#8451;</h1>
-                    <h3>{weather.sun}</h3>
+                    <h3>{weather.main}</h3>
                   </div>
                 </div>
               </div>

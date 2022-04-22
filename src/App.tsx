@@ -2,14 +2,15 @@ import React, { useState } from "react";
 import "./App.css";
 import AddInput from "./components/AddInput";
 import Weathers from "./components/Weathers";
+import { WeatherData } from "./interfaces/types";
 const App = () => {
-  let [weather, setW] = useState<any>({});
+  let [weather, setWeather] = useState<WeatherData[]>([]);
   if ("weather" in localStorage) {
     weather = JSON.parse(localStorage.getItem("weather") || "");
   }
   return (
     <div className="App">
-      <AddInput setW={setW} w={weather} />
+      <AddInput setWeather={setWeather} />
       <Weathers weather={weather} />
     </div>
   );
