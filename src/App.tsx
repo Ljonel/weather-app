@@ -5,6 +5,7 @@ import Weathers from "./components/Weathers";
 import { WeatherData } from "./interfaces/types";
 const App = () => {
   let [weather, setWeather] = useState<WeatherData[]>([]);
+
   if ("weather" in localStorage) {
     weather = JSON.parse(localStorage.getItem("weather") || "");
   }
