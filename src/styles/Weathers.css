@@ -10,10 +10,13 @@
 }
 .card-container {
   min-width: 200px;
-  height: 400px;
   display: flex;
   flex-direction: column;
   position: relative;
+  /*  */
+  min-height: 400px;
+  align-items: center;
+  justify-content: center;
 }
 .card {
   cursor: pointer;
@@ -31,9 +34,10 @@
   border: 1px solid white;
   overflow: hidden;
 }
+
 .card-header {
   width: 100%;
-  height: 40%;
+  height: 150px;
   padding-left: 30px;
   display: flex;
   flex-direction: column;
@@ -44,12 +48,42 @@
   font-size: 2.5rem;
 }
 .card-weather {
-  height: 60%;
+  height: 250px;
   width: 100%;
   padding-left: 30px;
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+
+.chat-bubble {
+  background: white;
+  width: 250px;
+  bottom: -5px;
+  position: absolute;
+  top: -55px;
+  height: 50px;
+  border-radius: 15px;
+  transition: 0.5s;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chat-bubble::after {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 125px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 5px 0 5px;
+  border-color: #ffffff transparent transparent transparent;
+}
+.card:hover + .chat-bubble {
+  opacity: 0.5;
 }
 
 .card-weather img {
@@ -65,7 +99,7 @@
   position: absolute;
   left: 250px;
   width: 350px;
-  height: 100%;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,4 +126,42 @@
 .menu-el:nth-child(3) h1 svg {
   font-size: 20px;
   padding-right: 10px;
+}
+
+@media screen and (max-width: 600px) {
+  .card {
+    z-index: unset;
+    position: absolute;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+    overflow: visible;
+  }
+  .card-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+  }
+  .menu {
+    position: absolute;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    left: 0;
+    width: 250px;
+  }
+  .menu-el h1 {
+    margin: 0;
+  }
+  .menu-el {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .chat-bubble {
+    display: none;
+  }
+  .active {
+    transform: rotateY(180deg);
+    width: 250px;
+  }
 }

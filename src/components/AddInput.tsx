@@ -2,14 +2,14 @@ import React, { SyntheticEvent, useState } from "react";
 import { AiOutlinePlus } from "react-icons/ai";
 import "../styles/AddInput.css";
 import getWeather from "../hooks/getWeather";
-const AddInput = () => {
+const AddInput = ({ setW, weather }: any) => {
   const [isInputActive, setIsInputActive] = useState<boolean>(false);
   const [city, setCity] = useState<string>("");
 
   const HandleAddWeather = (e: SyntheticEvent) => {
     e.preventDefault();
     if (city) {
-      getWeather(city);
+      getWeather(city, setW);
       setCity("");
     }
   };

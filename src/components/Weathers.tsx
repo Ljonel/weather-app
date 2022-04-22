@@ -3,63 +3,59 @@ import "../styles/Weathers.css";
 import useGetTodayDate from "../hooks/useGetTodayDate";
 import { WiStrongWind, WiHumidity } from "react-icons/wi";
 import { BsSpeedometer } from "react-icons/bs";
-function Weathers() {
+function Weathers({ weather }: any) {
   const date = useGetTodayDate();
   const [isActive, setIsActive] = useState(false);
-  const [weather, setWeather] = useState<any>([]);
+  // const [weather, setWeather] = useState<any>([]);
   const handleMenu = () => {
     setIsActive((prev) => !prev);
   };
 
-  useEffect(() => {
-    // let data = [];
-    const data = JSON.parse(localStorage.getItem("weather") || "");
-    if (data) {
-      setWeather({ ...data, icon: data.weather[0].icon, sun: data.weather[0].main });
-    }
-  }, []);
-
   return (
     <div className="card-wrapper">
-      {weather && (
+      {weather && Object.keys(weather).length === 0 ? null : (
         <>
           <div className="card-container">
             <div onClick={handleMenu} className={`card ${isActive ? "active" : ""}`}>
-              <div className="card-header">
-                <h1>{weather.name}</h1>
-                <p>{date}</p>
-              </div>
-              <div className="card-weather">
-                <img src={`http://openweathermap.org/img/wn/${weather.icon}@2x.png`} alt="" />
-                <div className="card-weahter-temp">
-                  <h1>{weather?.main?.temp}&#8451;</h1>
-                  <h3>{weather.sun}</h3>
+              <div className="card-front">
+                <div className="card-header">
+                  <h1>{weather.city}</h1>
+                  <p>{date}</p>
+                </div>
+                <div className="card-weather">
+                  <img src={`http://openweathermap.org/img/wn/${weather.img}@2x.png`} alt="" />
+                  <div className="card-weahter-temp">
+                    <h1>{Math.floor(weather.celcius)}&#8451;</h1>
+                    <h3>{weather.sun}</h3>
+                  </div>
                 </div>
               </div>
+
               <div className="menu">
                 <div className="menu-el">
                   <h1>
                     <WiStrongWind />
                     Wind
                   </h1>
-                  <p>{weather?.wind?.speed}meter/sec</p>
+                  <p>{weather.wind} m/s</p>
                 </div>
                 <div className="menu-el">
                   <h1>
                     <WiHumidity />
                     Humidity
                   </h1>
-                  <p>{weather?.main?.humidity}%</p>
+                  <p>{weather.humidity} %</p>
                 </div>
                 <div className="menu-el">
                   <h1>
                     <BsSpeedometer />
                     Pressure
                   </h1>
-                  <p>{weather?.main?.pressure}hPa</p>
+                  <p>{weather.pressure} hPa</p>
                 </div>
               </div>
             </div>
+            <div className="chat-bubble">Tap to see details</div>
           </div>
         </>
       )}

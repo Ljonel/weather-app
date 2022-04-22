@@ -1,5 +1,3 @@
-import React from "react";
-
 const useGetTodayDate = () => {
   const day = new Date().toLocaleString("en-US", { day: "numeric" });
   const month = new Date().toLocaleString("en-US", { month: "long" });
