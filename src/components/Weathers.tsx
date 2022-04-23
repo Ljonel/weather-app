@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "../styles/Weathers.css";
 import useGetTodayDate from "../hooks/useGetTodayDate";
 import { WiStrongWind, WiHumidity } from "react-icons/wi";
@@ -6,7 +6,7 @@ import { BsSpeedometer } from "react-icons/bs";
 function Weathers({ weather }: any) {
   const date = useGetTodayDate();
   const [isActive, setIsActive] = useState(false);
-  const handleMenu = () => {
+  const handleMenu = (): void => {
     setIsActive((prev) => !prev);
   };
 
